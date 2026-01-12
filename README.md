@@ -1,1 +1,1 @@
-# coding-project-template
+IBM final project, Paradise Nursery e-plantShopping.
