@@ -61,7 +61,15 @@ const CartItem = ({ onContinueShopping, onRemoveFromCart }) => {
     };
 
     const handleCheckoutShopping = (e) => {
-        alert('Functionality to be added for future reference');
+        //Optimize routine:
+        if (cart.length === 0) {
+            alert('Your cart is empty. Please add items to your cart before checking out.');
+            return;
+        } else {
+            alert('Thank you for your purchase! Your order has been placed successfully. Your items are: '
+                + cart.map(item => `${item.name} (Quantity: ${item.quantity})`).join(', '));
+
+        }
     };
     return (
         <div className="cart-container">
