@@ -9463,8 +9463,8 @@ function ProductList({ onHomeClick }) {
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "tag", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "luxury", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png", alt: "" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "/", onClick: (e) => handleHomeClick(e), children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { style: { color: "white" }, children: "Paradise Nursery" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("i", { style: { color: "white" }, children: "Where Green Meets Serenity" })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { style: { color: "white", marginLeft: "10px" }, children: " Paradise Nursery" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("i", { style: { color: "white", marginLeft: "10px" }, children: " Where Green Meets Serenity" })
         ] }) })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: styleObjUl, children: [
@@ -9488,7 +9488,7 @@ function ProductList({ onHomeClick }) {
       ] })
     ] }),
     !showCart ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "product-grid", children: plantsArray.map((category, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: category.category }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { display: "block", textAlign: "center" }, children: category.category }) }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "product-list", children: category.plants.map((plant, plantIndex) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "product-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "img",
@@ -9504,7 +9504,7 @@ function ProductList({ onHomeClick }) {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
           {
-            className: `product-button ${addedToCart[plant.name] ? "added-to-cart " : ""}`,
+            className: `product-button ${addedToCart[plant.name] ? "added" : ""}`,
             onClick: () => handleAddToCart(plant),
             disabled: addedToCart[plant.name],
             children: addedToCart[plant.name] ? "Added to Cart" : "Add to Cart"
