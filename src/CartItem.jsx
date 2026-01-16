@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const CartItem = ({ onContinueShopping }) => {
+const CartItem = ({ onContinueShopping, onRemoveFromCart }) => {
     const cart = useSelector(state => state.cart.items);
     const dispatch = useDispatch();
+    const prevCartRef = useRef(cart);
+
+    // Track removed items and reset button state
+    useEffect(() => {
+        const prevCart = prevCartRef.current;
+        const currentCartNames = cart.map(item => item.name);
+        const prevCartNames = prevCart.map(item => item.name);
+
+        // Find items that were in previous cart but not in current cart
+        prevCartNames.forEach(name => {
+            if (!currentCartNames.includes(name)) {
+                onRemoveFromCart(name);
+            }
+        });
+
+        prevCartRef.current = cart;
+    }, [cart, onRemoveFromCart]);
 
     // Calculate total amount for all products in the cart
     const calculateTotalAmount = () => {
@@ -17,7 +34,7 @@ const CartItem = ({ onContinueShopping }) => {
     };
 
     const handleContinueShopping = (e) => {
-        alert('Functionality to be added for future reference');
+        onContinueShopping(e);
     };
 
     const handleIncrement = (item) => {
@@ -26,21 +43,26 @@ const CartItem = ({ onContinueShopping }) => {
     };
 
     const handleDecrement = (item) => {
-        if (item.quantity > 0) {
+        if (item.quantity >= 1) {
             dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
-        } else { 
+        } else {
             dispatch(removeItem(item.name));
         }
     };
 
     const handleRemove = (item) => {
         dispatch(removeItem(item.name));
+        onRemoveFromCart(item.name)
     };
 
     // Calculate total cost based on quantity for an item
     const calculateTotalCost = (item) => {
+        return parseFloat(item.cost.substring(1)) * item.quantity;
     };
 
+    const handleCheckoutShopping = (e) => {
+        alert('Functionality to be added for future reference');
+    };
     return (
         <div className="cart-container">
             <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
@@ -66,7 +88,7 @@ const CartItem = ({ onContinueShopping }) => {
             <div className="continue_shopping_btn">
                 <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
                 <br />
-                <button className="get-started-button1">Checkout</button>
+                <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
             </div>
         </div>
     );

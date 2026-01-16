@@ -281,6 +281,15 @@ function ProductList({ onHomeClick }) {
             ...prevState,
             [product.name]: true,
         }));
+
+
+    };
+
+    const handleRemoveFromCart = (productName) => {
+        setAddedToCart((prevState) => ({
+            ...prevState,
+            [productName]: false,
+        }));
     };
 
     const calculateTotalQuantity = () => {
@@ -331,10 +340,11 @@ function ProductList({ onHomeClick }) {
                                         <div className="product-description">{plant.description}</div>
                                         <div className="product-cost">{plant.cost}</div>
                                         <button
-                                            className="product-button"
+                                            className={`product-button ${addedToCart[plant.name] ? 'added-to-cart ' : ''}`}
                                             onClick={() => handleAddToCart(plant)}
+                                            disabled={addedToCart[plant.name]}
                                         >
-                                            Add to Cart
+                                            {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
                                         </button>
                                     </div>
                                 ))}
@@ -343,7 +353,7 @@ function ProductList({ onHomeClick }) {
                     ))}
                 </div>
             ) : (
-                <CartItem onContinueShopping={handleContinueShopping} />
+                <CartItem onContinueShopping={handleContinueShopping} onRemoveFromCart={handleRemoveFromCart} />
             )}
         </div>
     );
