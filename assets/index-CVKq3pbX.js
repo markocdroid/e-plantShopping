@@ -9138,7 +9138,12 @@ const CartItem = ({ onContinueShopping, onRemoveFromCart }) => {
     return parseFloat(item.cost.substring(1)) * item.quantity;
   };
   const handleCheckoutShopping = (e) => {
-    alert("Functionality to be added for future reference");
+    if (cart.length === 0) {
+      alert("Your cart is empty. Please add items to your cart before checking out.");
+      return;
+    } else {
+      alert("Thank you for your purchase! Your order has been placed successfully. Your items are: " + cart.map((item) => `${item.name} (Quantity: ${item.quantity})`).join(", "));
+    }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "cart-container", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { style: { color: "black" }, children: [
