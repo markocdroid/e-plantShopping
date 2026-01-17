@@ -9138,12 +9138,7 @@ const CartItem = ({ onContinueShopping, onRemoveFromCart }) => {
     return parseFloat(item.cost.substring(1)) * item.quantity;
   };
   const handleCheckoutShopping = (e) => {
-    if (cart.length === 0) {
-      alert("Your cart is empty. Please add items to your cart before checking out.");
-      return;
-    } else {
-      alert("Thank you for your purchase! Your order has been placed successfully. Your items are: " + cart.map((item) => `${item.name} (Quantity: ${item.quantity})`).join(", "));
-    }
+    alert("Thank you for your purchase! Your order has been placed successfully. Your items are: " + cart.map((item) => `${item.name} (Quantity: ${item.quantity})`).join(", "));
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "cart-container", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { style: { color: "black" }, children: [
@@ -9509,7 +9504,7 @@ function ProductList({ onHomeClick }) {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
           {
-            className: `product-button ${addedToCart[plant.name] ? "added" : ""}`,
+            className: `product-button ${addedToCart[plant.name] ? "added-to-cart" : ""}`,
             onClick: () => handleAddToCart(plant),
             disabled: addedToCart[plant.name],
             children: addedToCart[plant.name] ? "Added to Cart" : "Add to Cart"
